@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div>안녕하세요</div>
+  <button onclick="onClickHandler()">서버로 텍스트 보내기</button>
+<script>
+    const webSocket = new WebSocket("ws://localhost:8080/ws/chat");
+    webSocket.onopen = () => {
+        console.log("서버와 연결 성공");
+    };
+
+    webSocket.onmessage = ev => {
+        console.log(ev.data);
+    }
+
+    const onClickHandler = () => {
+        webSocket.send("클라이언트에서 서버로 텍스트 전송!!");
+    }
+</script>
+</body>
+</html>
